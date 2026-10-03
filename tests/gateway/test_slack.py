@@ -3902,7 +3902,9 @@ class TestSlackThreadParentContext:
             history=[{"role": "user", "content": "original task"}],
         )
 
-        assert prepared == "one more detail"
+        assert prepared is not None
+        assert prepared.startswith("[Gateway Slack sender metadata] ")
+        assert prepared.endswith("\none more detail")
         assert "[Replying to:" not in prepared
 
 

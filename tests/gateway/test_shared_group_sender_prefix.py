@@ -44,6 +44,8 @@ async def test_preprocess_includes_slack_author_mention_for_shared_thread():
         history=[],
     )
 
-    assert result == "[Alice | Slack user <@U123>] mention me again"
+    assert result is not None
+    assert result.startswith('[Gateway Slack sender metadata] {"user_id": "U123", "is_bot": false}')
+    assert result.endswith("[Alice | Slack user <@U123>] mention me again")
 
 
